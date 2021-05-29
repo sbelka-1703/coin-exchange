@@ -1,0 +1,44 @@
+import React, { Component } from 'react'
+import logo from '../../logo.svg';
+import styled from 'styled-components'
+
+
+const Img = styled.img `
+height: 8rem;
+pointer-events: none;
+
+`;
+
+
+const Header = styled.header`
+background-color: #282c34;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 36px;
+    color: white;
+
+`;
+
+
+const H1 = styled.h1`
+font-size: 4rem;
+`;
+
+ 
+
+
+export default class ExchangeHeader extends Component {
+    render() {
+        return (
+            <Header >
+            <Img src ={logo} alt="React logo" className = "App-logo" />
+            <H1 className = "App-tittle">
+              Coin Exchange 
+            </H1 >
+            </Header>
+        )
+    }
+}

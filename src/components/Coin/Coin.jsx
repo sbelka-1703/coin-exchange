@@ -14,36 +14,24 @@ const Td = styled.td`
 export default class Coin extends Component {
         constructor(props){
             super(props);
-            //The state is only declared within the constructor, with this.state
-            this.state = {
-                price: this.props.price
-            }
-            this.handleClick = this.handleClick.bind(this);
+            this.handleClick = this.handleClick.bind(this);    
         }
-
+    
     handleClick(event){
         event.preventDefault();
 
-        const randomPercetnage = 0.995 + Math.random() * 0.01;
-        // We can only use this.setState to manipulate the state. We 
-        this.setState( function(oldState){
-            return{
-                //
-                price: oldState.price * randomPercetnage
-            }
-            
+        this.props.handleRefresh(this.props.ticker);
+    /*
+        */
 
 
-        });
-
-
-    }
+    } 
     render() {
         return (
-            <tr className = "coin-row">
+            <tr >
                 <Td>{this.props.name}</Td>
                 <Td>{this.props.ticker}</Td>
-                <Td>${this.state.price}</Td>
+                <Td>${this.props.price}</Td>
 
             <Td>
                 <form action="#" method="POST">
@@ -60,3 +48,4 @@ Coin.propTypes = {
     ticker: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired
 }
+

@@ -24,6 +24,7 @@ const COIN_COUNT = 10;
 function App () {
   
 
+  const [coinBalance, setCoinBalance] = useState(0)
 
   const componentDidMount = async () => {
     const response = await axios.get('https://api.coinpaprika.com/v1/coins')
@@ -56,10 +57,15 @@ function App () {
       
      }
   })
+
+  useEffect(() =>{
+    componentDidMount();   
+
+ }, [coinBalance])  
  
   const [balance, setBalance] = useState(10000)
   const [showBalance, setShowBalance] = useState(true)
-  const [coinBalance, setCoinBalance] = useState(0)
+  
   const [coinData, setCoinData] = useState([])
 
  
@@ -71,6 +77,8 @@ function App () {
   }
  
 
+
+  
   const handleRefresh = async (valueChangeId) => {
     const tickerURL = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`
     const response = await axios.get(tickerURL)
@@ -88,6 +96,9 @@ function App () {
     setCoinData(newCoinData)
   }
     
+
+
+
 
   const increaseBalance = () =>{
     let helecopter = balance + 1200

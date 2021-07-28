@@ -31,6 +31,9 @@ const Coin = (props) =>  {
 
         let balanceIncrease = props.coinBalance + 1
         props.setCoinBalance(balanceIncrease)
+     
+
+
     }
     
     const handleClick = (event) => {
@@ -65,6 +68,7 @@ const Coin = (props) =>  {
           
            isOpen = {modalIsOpen} 
            style = {customStyles} 
+           ariaHideApp={false}
            onRequestClose = {() => setModalIsOpen(false)}>
            <h1>Buy</h1>
            <input></input>

@@ -80,6 +80,7 @@ function App () {
 
   
   const handleRefresh = async (valueChangeId) => {
+    //run this in debugger to see how valueChangeId is selected *******************************************************<------
     const tickerURL = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`
     const response = await axios.get(tickerURL)
     const newPrice = formatPrice(response.data.quotes.USD.price)
@@ -95,7 +96,30 @@ function App () {
 
     setCoinData(newCoinData)
   }
-    
+
+  /*
+
+  -Build the buy function, so it works with a hard coded price of a token 
+
+  1. Chose the amount of the token you want to buy 
+  
+  
+  2. Get the actual price of the specific token from coinparika (**later**)
+
+  3. Balance - (price * amount)
+    -If insufficent balance, throw an error 
+  
+  4. Add it to the balance of the token 
+
+  5. Try to put it in a separate component 
+
+
+  =======
+
+  We also need the modal to display which token was selected, work on this first 
+  
+  */
+  
 
 
 

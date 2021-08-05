@@ -55,8 +55,8 @@ const Coin = (props) =>  {
         event.preventDefault();
         
         
-
-        props.handleBuy(props.tickerId, 0.2);
+        
+        props.handleBuy(props.tickerId, props.buyInputValue);
         
     } 
 
@@ -91,8 +91,8 @@ const Coin = (props) =>  {
            onRequestClose = {() => setModalIsOpen(false)}>
            <h1>Buy</h1>
            <h1>${props.tickerId}</h1>
-           <input value = {props.buyAmmount} onChange={e => (e.target.value)}  ></input>
-           <button onClick = {handleBuyClick}>Buy</button>
+           <input onChange={event => props.setbuyInputValue(event.target.value)}  ></input>
+           <button onClick = {handleBuyClick} >Buy</button>
 
           </Modal>
 

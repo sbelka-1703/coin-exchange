@@ -38,8 +38,8 @@ width: 1000px ;
                 key={key} 
                 handleRefresh = {props.handleRefresh} 
                 handleBuy = {props.handleBuy}
-                buyAmmount = {props.buyAmmount}
-                setBuyAmmount = {props.setBuyAmmount}
+                buyInputValue = {props.buyInputValue}
+                setbuyInputValue ={props.setbuyInputValue}
                 setCoinBalance = {props.setCoinBalance}
                 coinBalance = {props.coinBalance}
                 name={name} 

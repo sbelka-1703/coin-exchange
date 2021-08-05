@@ -37,6 +37,9 @@ width: 1000px ;
                 <Coin 
                 key={key} 
                 handleRefresh = {props.handleRefresh} 
+                handleBuy = {props.handleBuy}
+                buyAmmount = {props.buyAmmount}
+                setBuyAmmount = {props.setBuyAmmount}
                 setCoinBalance = {props.setCoinBalance}
                 coinBalance = {props.coinBalance}
                 name={name} 

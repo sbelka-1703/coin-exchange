@@ -27,23 +27,42 @@ const Coin = (props) =>  {
         }
     };
 
-    const buy = () => {
+    // const buy = () => {
 
-        let balanceIncrease = props.coinBalance + 1
-        props.setCoinBalance(balanceIncrease)
+    //     let balanceIncrease = props.coinBalance + 1
+    //     props.setCoinBalance(balanceIncrease)
      
 
 
-    }
+    // }
+     
+
     
     const handleClick = (event) => {
+        
         event.preventDefault();
 
         props.handleRefresh(props.tickerId);
         
     } 
 
+
+
+
+    const handleBuyClick = (event) => {
+        
+        // props.setBuyAmmount(pidor)
+        event.preventDefault();
+        
+        
+
+        props.handleBuy(props.tickerId, 0.2);
+        
+    } 
+
+
     const clicked = () => { 
+    
         console.log('test')
     }
 
@@ -71,8 +90,9 @@ const Coin = (props) =>  {
            ariaHideApp={false}
            onRequestClose = {() => setModalIsOpen(false)}>
            <h1>Buy</h1>
-           <input></input>
-           <button onClick = {buy}>Buy</button>
+           <h1>${props.tickerId}</h1>
+           <input value = {props.buyAmmount} onChange={e => (e.target.value)}  ></input>
+           <button onClick = {handleBuyClick}>Buy</button>
 
           </Modal>
 
@@ -80,7 +100,9 @@ const Coin = (props) =>  {
         )
     }
 
+ 
 
+    
 Coin.propTypes = {
     name: PropTypes.string.isRequired, 
     ticker: PropTypes.string.isRequired,

@@ -58,15 +58,17 @@ function App () {
      }
   })
 
-  useEffect(() =>{
-    componentDidMount();   
+//   useEffect(() =>{
+//     componentDidMount();   
 
- }, [coinBalance])  
+//  }, [coinBalance])  
  
-  const [balance, setBalance] = useState(10000)
+  const [accountBalance, setAccountBalance] = useState(10000)
   const [showBalance, setShowBalance] = useState(true)
   
   const [coinData, setCoinData] = useState([])
+
+  const [buyAmmount, setBuyAmmount] = useState(0)
 
  
   
@@ -80,7 +82,7 @@ function App () {
 
   
   const handleRefresh = async (valueChangeId) => {
-    //run this in debugger to see how valueChangeId is selected *******************************************************<------
+    
     const tickerURL = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`
     const response = await axios.get(tickerURL)
     const newPrice = formatPrice(response.data.quotes.USD.price)
@@ -97,26 +99,54 @@ function App () {
     setCoinData(newCoinData)
   }
 
+
+  const handleBuy = async (valueChangeId, ammountVallue) => {
+    
+    const tickerURL = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`
+    const response = await axios.get(tickerURL)
+    const newPrice = formatPrice(response.data.quotes.USD.price)
+    const newCoinData = coinData.map( function (values){
+    let newValues = {...values}; 
+    if (valueChangeId === values.key){
+      setBuyAmmount(ammountVallue)
+      let ammountOfCoin = buyAmmount
+      let newAccountBalance = accountBalance - (newPrice * ammountOfCoin)
+      setAccountBalance(newAccountBalance)
+      newValues.balance  += ammountOfCoin;
+    };
+        
+        return newValues;
+    });
+
+    
+    setCoinData(newCoinData)
+  }
+
+
   /*
 
   -Build the buy function, so it works with a hard coded price of a token 
+ 
+   *****
 
   1. Chose the amount of the token you want to buy 
+      -Need to get the value of the input and put that into handleBuy 
+   
+   *****
   
-  
-  2. Get the actual price of the specific token from coinparika (**later**)
+ x 2. Get the actual price of the specific token from coinparika (**later**)
 
-  3. Balance - (price * amount)
+ x 3. Balance - (price * amount)
     -If insufficent balance, throw an error 
   
-  4. Add it to the balance of the token 
+ x 4. Add it to the balance of the token 
 
   5. Try to put it in a separate component 
 
 
   =======
 
-  We also need the modal to display which token was selected, work on this first 
+ x We also need the modal to display which token was selected, work on this first 
   
   */
   
@@ -125,8 +155,8 @@ function App () {
 
 
   const increaseBalance = () =>{
-    let helecopter = balance + 1200
-    setBalance ( helecopter)
+    let helecopter = accountBalance + 1200
+    setAccountBalance ( helecopter)
 }
 
 
@@ -137,7 +167,7 @@ function App () {
         <ExchangeHeader />
         <AccountBalance 
         brrr = {increaseBalance}
-        amount={balance} 
+        amount={accountBalance} 
         showBalance = {showBalance} 
         handleBalanceVisibilityChange = {handleBalanceVisibilityChange} />
         <CoinList 
@@ -145,7 +175,10 @@ function App () {
         setCoinBalance = {setCoinBalance}
         coinData = {coinData} 
         showBalance={showBalance}
-        handleRefresh ={handleRefresh} /> 
+        handleRefresh ={handleRefresh}
+        handleBuy ={handleBuy} /> 
+        buyAmmount = {buyAmmount}
+        setBuyAmmount = {setBuyAmmount}
          
     </Div>
   );

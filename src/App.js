@@ -30,7 +30,6 @@ function App () {
     const response = await axios.get('https://api.coinpaprika.com/v1/coins')
     const coinIds = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
     const tickerUrl = 'https://api.coinpaprika.com/v1/tickers/'
-    //this will be an array of promises 
     const promises = coinIds.map(id => axios.get(tickerUrl + id ))
     const coinData =  await Promise.all(promises)
     const coinPriceData = coinData.map(function(response){
@@ -58,15 +57,10 @@ function App () {
      }
   })
 
-//   useEffect(() =>{
-//     componentDidMount();   
-
-//  }, [coinBalance])  
  
   const [accountBalance, setAccountBalance] = useState(10000)
   const [showBalance, setShowBalance] = useState(true)
   const [coinData, setCoinData] = useState([])
-  const [buyAmmount, setBuyAmmount] = useState(0)
   const [buyInputValue, setbuyInputValue] = useState('')
 
 
@@ -109,7 +103,7 @@ function App () {
     let newValues = {...values}; 
  
     if (valueChangeId === values.key){
-      let ammountOfCoin = parseInt(ammountVallue)
+      let ammountOfCoin = parseFloat(ammountVallue)
       let newAccountBalance = accountBalance - (newPrice * ammountOfCoin)
       setAccountBalance(newAccountBalance)
       newValues.balance  += ammountOfCoin;
@@ -125,11 +119,11 @@ function App () {
 
   /*
 
-  -Build the buy function, so it works with a hard coded price of a token 
+  x-Build the buy function, so it works with a hard coded price of a token 
  
    *****
 
-  1. Chose the amount of the token you want to buy 
+  x 1. Chose the amount of the token you want to buy 
       -Need to get the value of the input and put that into handleBuy 
    
    *****

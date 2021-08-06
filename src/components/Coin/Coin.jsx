@@ -13,7 +13,8 @@ const Td = styled.td`
 
 
 const Coin = (props) =>  {
-    const[modalIsOpen,setModalIsOpen] = useState(false)
+
+const[modalIsOpen,setModalIsOpen] = useState(false)
 
     const customStyles = {
         content : {
@@ -26,15 +27,6 @@ const Coin = (props) =>  {
           backgroundColor       : '#F0AA89'      
         }
     };
-
-    // const buy = () => {
-
-    //     let balanceIncrease = props.coinBalance + 1
-    //     props.setCoinBalance(balanceIncrease)
-     
-
-
-    // }
      
 
     
@@ -51,7 +43,6 @@ const Coin = (props) =>  {
 
     const handleBuyClick = (event) => {
         
-        // props.setBuyAmmount(pidor)
         event.preventDefault();
         
         

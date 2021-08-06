@@ -101,15 +101,15 @@ function App () {
 
 
   const handleBuy = async (valueChangeId, ammountVallue) => {
-  
+    
     const tickerURL = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`
     const response = await axios.get(tickerURL)
     const newPrice = formatPrice(response.data.quotes.USD.price)
     const newCoinData = coinData.map( function (values){
     let newValues = {...values}; 
+ 
     if (valueChangeId === values.key){
-      setBuyAmmount(ammountVallue)
-      let ammountOfCoin = parseInt(buyAmmount)
+      let ammountOfCoin = parseInt(ammountVallue)
       let newAccountBalance = accountBalance - (newPrice * ammountOfCoin)
       setAccountBalance(newAccountBalance)
       newValues.balance  += ammountOfCoin;

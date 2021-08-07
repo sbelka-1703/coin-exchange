@@ -40,6 +40,8 @@ function Buy(props) {
           <h1>${props.tickerId}</h1>
           <input onChange={event => props.setbuyInputValue(event.target.value)}  ></input>
           <button onClick = {handleBuyClick} >Buy</button>
+          ariaHideApp={false}
+          onRequestClose = {() => props.setModalIsOpen(false)}
         </div>
         </>
     )
@@ -91,8 +93,7 @@ export default Buy
           
 //           {/* isOpen = {props.modalIsOpen} 
 //           
-//           ariaHideApp={false}
-//           onRequestClose = {() => props.setModalIsOpen(false)} */}
+          
 //           <h1>Buy</h1>
 //           <h1>${props.tickerId}</h1>
 //           

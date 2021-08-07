@@ -1,8 +1,8 @@
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
-import Modal from 'react-modal';
 import React, { useState } from 'react';
+import Buy from '../Modals/Buy'
 
 
 const Td = styled.td`
@@ -16,17 +16,8 @@ const Coin = (props) =>  {
 
 const[modalIsOpen,setModalIsOpen] = useState(false)
 
-    const customStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)',
-          backgroundColor       : '#F0AA89'      
-        }
-    };
+
+    
      
 
     
@@ -41,15 +32,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
 
 
 
-    const handleBuyClick = (event) => {
-        
-        event.preventDefault();
-        
-        
-        
-        props.handleBuy(props.tickerId, props.buyInputValue);
-        
-    } 
+   
 
 
     const clicked = () => { 
@@ -74,23 +57,24 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
             </Td>
           </tr>
 
-          <Modal 
-          
-           isOpen = {modalIsOpen} 
-           style = {customStyles} 
-           ariaHideApp={false}
-           onRequestClose = {() => setModalIsOpen(false)}>
-           <h1>Buy</h1>
-           <h1>${props.tickerId}</h1>
-           <input onChange={event => props.setbuyInputValue(event.target.value)}  ></input>
-           <button onClick = {handleBuyClick} >Buy</button>
+            {modalIsOpen && <Buy 
+            ariaHideApp={false}
+            tickerId = {props.tickerId}
+            setbuyInputValue ={props.setbuyInputValue}
+            handleBuy = {props.handleBuy}
+            
+            
+            />}
 
-          </Modal>
+        
+
+            
 
           </>
         )
     }
-
+//   modalIsOpen={modalIsOpen}
+//   handleBuy = {props.handleBuy}
  
 
     

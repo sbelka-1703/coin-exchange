@@ -81,8 +81,17 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
            ariaHideApp={false}
            onRequestClose = {() => setModalIsOpen(false)}>
            <h1>Buy</h1>
-           <h1>${props.tickerId}</h1>
-           <input onChange={event => props.setbuyInputValue(event.target.value)}  ></input>
+           <h1>{props.tickerId}</h1>
+           <label for = "buyInput"> Amount of Coins to Buy </label>
+
+           <input id = "buyInput" 
+           type ="number" 
+           required
+           onChange={event => props.setbuyInputValue(event.target.value)}>
+        
+            </input>
+
+
            <button onClick = {handleBuyClick} >Buy</button>
 
           </Modal>

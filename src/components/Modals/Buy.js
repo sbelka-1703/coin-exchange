@@ -1,49 +1,39 @@
 
-import Modal from 'react-modal';
+
 
 
 import React from 'react'
 
 function Buy(props) {
 
-    const customStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)',
-          backgroundColor       : '#F0AA89'      
-        }
-
-        
-    };
+   
 
 
     
-    const handleBuyClick = (event) => {
-        
-        event.preventDefault();
-        
-        
-        debugger;
-        props.handleBuy(props.tickerId, props.buyInputValue);
-        
-    } 
+  
     return (
 
         <>
-        <div style = {customStyles} />  
-          <div>
+          
+         
+         
+          
           <h1>Buy</h1>
           <h1>${props.tickerId}</h1>
+          
+          <button onClick = {props.handleBuyClick} >Buy</button>
           <input onChange={event => props.setbuyInputValue(event.target.value)}  ></input>
+<<<<<<< Updated upstream
           <button onClick = {handleBuyClick} >Buy</button>
           ariaHideApp={false}
           onRequestClose = {() => props.setModalIsOpen(false)}
         </div>
+=======
+       
+          
+>>>>>>> Stashed changes
         </>
+        
     )
 }
 

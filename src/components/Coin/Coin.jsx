@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import React, { useState } from 'react';
+import Modal from 'react-modal';
 import Buy from '../Modals/Buy'
 
 
@@ -28,9 +29,30 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
         props.handleRefresh(props.tickerId);
         
     } 
+    
+    const handleBuyClick = (event) => {
+        
+        event.preventDefault();
+        
+       console.log(props.buyInputValue)
+       props.handleBuy(props.tickerId, props.buyInputValue);
+    
 
+    }
 
+    const customStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)',
+          backgroundColor       : '#F0AA89'      
+        }
 
+        
+    };
 
    
 
@@ -55,17 +77,21 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
                 <button onClick = {handleClick}>Refresh</button>
                 </form>
             </Td>
-          </tr>
+             </tr>
+            
 
+            <Modal>
             {modalIsOpen && <Buy 
             ariaHideApp={false}
+            style = {customStyles}
             tickerId = {props.tickerId}
             setbuyInputValue ={props.setbuyInputValue}
             handleBuy = {props.handleBuy}
+            handleBuyClick = {handleBuyClick}
             
             
             />}
-
+            </Modal>
         
 
             

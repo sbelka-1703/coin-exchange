@@ -9,6 +9,19 @@ const Td = styled.td`
     border: 1px solid #cccc;
     width: 25vh; `
 
+const H1 = styled.h1`
+
+display: flex;
+color: white;
+
+`
+
+const Label = styled.label`
+display: flex;
+color: white;
+
+`
+
 
 
 
@@ -24,7 +37,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
           bottom                : 'auto',
           marginRight           : '-50%',
           transform             : 'translate(-50%, -50%)',
-          backgroundColor       : '#F0AA89'      
+          backgroundColor       : 'rgb(38, 45, 52)'      
         }
     };
      
@@ -52,11 +65,18 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
     } 
 
 
-    const clicked = () => { 
     
-        console.log('test')
-    }
+    const handleSellClick = (event) => {
+        
+        event.preventDefault();
+        
+        
+        
+        props.handleSell(props.tickerId, props.buyInputValue);
 
+    
+
+    }
         return (
             <>
             <tr >
@@ -66,8 +86,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
                 {props.showBalance ? <Td> {props.balance}</Td> : null}
 
             <Td>
-                <button onClick = {() => setModalIsOpen(true)}>Buy</button>
-                <button onClick = {clicked}>Sell</button>
+                <button onClick = {() => setModalIsOpen(true)}>Trade</button>
                 <form action="#" method="POST">
                 <button onClick = {handleClick}>Refresh</button>
                 </form>
@@ -80,9 +99,9 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
            style = {customStyles} 
            ariaHideApp={false}
            onRequestClose = {() => setModalIsOpen(false)}>
-           <h1>Buy</h1>
-           <h1>{props.tickerId}</h1>
-           <label for = "buyInput"> Amount of Coins to Buy </label>
+           <H1> Trade {props.tickerId.toUpperCase()} </H1> 
+           <h1></h1>
+           <Label for = "buyInput"> Amount of Coins to Buy/Sell </Label>
 
            <input id = "buyInput" 
            type ="number" 
@@ -93,6 +112,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
 
 
            <button onClick = {handleBuyClick} >Buy</button>
+           <button onClick = {handleSellClick} >Sell</button>
 
           </Modal>
 

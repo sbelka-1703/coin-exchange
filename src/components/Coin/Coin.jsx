@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
-import Modal from 'react-modal';
+import Modal from './Modal';
 import React, { useState } from 'react';
 
 
@@ -29,17 +29,7 @@ const Coin = (props) =>  {
 
 const[modalIsOpen,setModalIsOpen] = useState(false)
 
-    const customStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)',
-          backgroundColor       : 'rgb(38, 45, 52)'      
-        }
-    };
+    
      
 
     
@@ -57,26 +47,26 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
     const handleBuyClick = (event) => {
         
         event.preventDefault();
-        
-        
-        
         props.handleBuy(props.tickerId, props.buyInputValue);
         
     } 
 
 
-    
+
     const handleSellClick = (event) => {
         
         event.preventDefault();
-        
-        
-        
         props.handleSell(props.tickerId, props.buyInputValue);
 
     
 
     }
+
+    function toggleModal() {
+        setModalIsOpen(!modalIsOpen);
+      }
+
+    
         return (
             <>
             <tr >
@@ -86,7 +76,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
                 {props.showBalance ? <Td> {props.balance}</Td> : null}
 
             <Td>
-                <button onClick = {() => setModalIsOpen(true)}>Trade</button>
+                <button onClick = {toggleModal}>Trade</button>
                 <form action="#" method="POST">
                 <button onClick = {handleClick}>Refresh</button>
                 </form>
@@ -95,26 +85,21 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
 
           <Modal 
           
-           isOpen = {modalIsOpen} 
-           style = {customStyles} 
+          
+            
            ariaHideApp={false}
-           onRequestClose = {() => setModalIsOpen(false)}>
-           <H1> Trade {props.tickerId.toUpperCase()} </H1> 
-           <h1></h1>
-           <Label for = "buyInput"> Amount of Coins to Buy/Sell </Label>
+           onRequestClose = {() => setModalIsOpen(false)}
+           setbuyInputValue ={props.setbuyInputValue}
+           handleBuyClick = {handleBuyClick}
+           handleSellClick = {handleSellClick}
 
-           <input id = "buyInput" 
-           type ="number" 
-           required
-           onChange={event => props.setbuyInputValue(event.target.value)}>
-        
-            </input>
-
-
-           <button onClick = {handleBuyClick} >Buy</button>
-           <button onClick = {handleSellClick} >Sell</button>
-
-          </Modal>
+           toggleModal = {toggleModal}
+           />
+           
+           
+           
+           
+           
 
           </>
         )

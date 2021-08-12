@@ -9,25 +9,11 @@ const Td = styled.td`
     border: 1px solid #cccc;
     width: 25vh; `
 
-const H1 = styled.h1`
-
-display: flex;
-color: white;
-
-`
-
-const Label = styled.label`
-display: flex;
-color: white;
-
-`
-
-
 
 
 const Coin = (props) =>  {
 
-const[modalIsOpen,setModalIsOpen] = useState(false)
+const[IsOpen,setIsOpen] = useState(false)
 
     
      
@@ -63,7 +49,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
     }
 
     const toggleModal = () => {
-        setModalIsOpen(!modalIsOpen);
+        setIsOpen(!IsOpen);
       }
 
     
@@ -88,14 +74,14 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
           
             
            ariaHideApp={false}
-           onRequestClose = {() => setModalIsOpen(false)}
+           onRequestClose = {() => setIsOpen(false)}
            setbuyInputValue ={props.setbuyInputValue}
            handleBuyClick = {handleBuyClick}
            handleSellClick = {handleSellClick}
 
 
-           modalIsOpen ={modalIsOpen}
-           setModalIsOpen = {setModalIsOpen}
+           IsOpen ={IsOpen}
+           setIsOpen = {setIsOpen}
            toggleModal = {toggleModal}
            />
            

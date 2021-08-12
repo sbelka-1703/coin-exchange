@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components'
 
-
-export default (props) => {
-
-
-Modal.setAppElement()
 
 const H1 = styled.h1`
 
@@ -21,6 +16,17 @@ color: white;
 
 `
 
+
+
+export default (props) => {
+
+
+Modal.setAppElement()
+
+useEffect((props) => {
+  props.setIsOpen(props.IsOpen)
+}, [props.IsOpen])
+
 const customStyles = {
     content : {
       top                   : '50%',
@@ -34,11 +40,6 @@ const customStyles = {
 };
 
 
-const handleModal = (e) =>{
-    e.preventDefault();
-    props.toggleModal()
-
-}
 
 
 
@@ -46,10 +47,11 @@ const handleModal = (e) =>{
 
     return (
         <>
-         <form onSubmit = {handleModal}>
+        
           <Modal
           style = {customStyles}
-          modalIsOpen = {props.modalIsOpen} 
+          IsOpen = {props.IsOpen} 
+          setIsOpen = {props.setIsOpen}
           toggleModal = {props.toggleModal}
           >
           
@@ -71,7 +73,7 @@ const handleModal = (e) =>{
            <button onClick = {props.handleSellClick} >Sell</button>
 
           </Modal>
-          </form>
+         
           </>
     );
 }

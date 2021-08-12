@@ -3,18 +3,7 @@ import Modal from 'react-modal';
 import styled from 'styled-components'
 
 
-const H1 = styled.h1`
 
-display: flex;
-color: white;
-
-`
-
-const Label = styled.label`
-display: flex;
-color: white;
-
-`
 
 
 

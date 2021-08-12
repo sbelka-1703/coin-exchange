@@ -13,9 +13,19 @@ const Td = styled.td`
 
 const Coin = (props) =>  {
 
-const[IsOpen,setIsOpen] = useState(false)
+const[modalIsOpen,setModalIsOpen] = useState(false)
 
-    
+    const customStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)',
+          backgroundColor       : '#F0AA89'      
+        }
+    };
      
 
     
@@ -38,21 +48,11 @@ const[IsOpen,setIsOpen] = useState(false)
     } 
 
 
-
-    const handleSellClick = (event) => {
-        
-        event.preventDefault();
-        props.handleSell(props.tickerId, props.buyInputValue);
-
+    const clicked = () => { 
     
-
+        console.log('test')
     }
 
-    const toggleModal = () => {
-        setIsOpen(!IsOpen);
-      }
-
-    
         return (
             <>
             <tr >
@@ -62,7 +62,8 @@ const[IsOpen,setIsOpen] = useState(false)
                 {props.showBalance ? <Td> {props.balance}</Td> : null}
 
             <Td>
-                <button onClick = {toggleModal}>Trade</button>
+                <button onClick = {() => setModalIsOpen(true)}>Buy</button>
+                <button onClick = {clicked}>Sell</button>
                 <form action="#" method="POST">
                 <button onClick = {handleClick}>Refresh</button>
                 </form>
@@ -74,21 +75,25 @@ const[IsOpen,setIsOpen] = useState(false)
           
             
            ariaHideApp={false}
-           onRequestClose = {() => setIsOpen(false)}
-           setbuyInputValue ={props.setbuyInputValue}
-           handleBuyClick = {handleBuyClick}
-           handleSellClick = {handleSellClick}
+           onRequestClose = {() => setModalIsOpen(false)}>
+           <h1>Buy</h1>
+           <h1>{props.tickerId}</h1>
+           <label for = "buyInput"> Amount of Coins to Buy </label>
+           <input id = "buyInput" 
+           type ="number" 
+           required
+           onChange={event => props.setbuyInputValue(event.target.value)}
+           
+           
+           
+           >
+        
+            </input>
 
 
-           IsOpen ={IsOpen}
-           setIsOpen = {setIsOpen}
-           toggleModal = {toggleModal}
-           />
-           
-           
-           
-           
-           
+           <button onClick = {handleBuyClick} >Buy</button>
+
+          </Modal>
 
           </>
         )

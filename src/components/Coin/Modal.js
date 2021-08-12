@@ -4,7 +4,10 @@ import styled from 'styled-components'
 
 
 export default (props) => {
-    Modal.setAppElement()
+
+
+Modal.setAppElement()
+
 const H1 = styled.h1`
 
 display: flex;
@@ -29,9 +32,21 @@ const customStyles = {
       backgroundColor       : 'rgb(38, 45, 52)'      
     }
 };
+
+
+const handleModal = (e) =>{
+    e.preventDefault();
+    props.toggleModal()
+
+}
+
+
+
+
+
     return (
         <>
-
+         <form onSubmit = {handleModal}>
           <Modal
           style = {customStyles}
           modalIsOpen = {props.modalIsOpen} 
@@ -56,6 +71,7 @@ const customStyles = {
            <button onClick = {props.handleSellClick} >Sell</button>
 
           </Modal>
+          </form>
           </>
     );
 }

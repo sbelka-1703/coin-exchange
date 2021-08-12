@@ -62,7 +62,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
 
     }
 
-    function toggleModal() {
+    const toggleModal = () => {
         setModalIsOpen(!modalIsOpen);
       }
 
@@ -93,6 +93,9 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
            handleBuyClick = {handleBuyClick}
            handleSellClick = {handleSellClick}
 
+
+           modalIsOpen ={modalIsOpen}
+           setModalIsOpen = {setModalIsOpen}
            toggleModal = {toggleModal}
            />
            

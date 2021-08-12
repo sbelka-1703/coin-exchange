@@ -115,28 +115,7 @@ function App () {
     
     setCoinData(newCoinData)
   }
-  
-  const handleSell = async (valueChangeId, ammountVallue) => {
-    
-    const tickerURL = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`
-    const response = await axios.get(tickerURL)
-    const newPrice = formatPrice(response.data.quotes.USD.price)
-    const newCoinData = coinData.map( function (values){
-    let newValues = {...values}; 
- 
-    if (valueChangeId === values.key){
-      let ammountOfCoin = parseFloat(ammountVallue)
-      let newAccountBalance = accountBalance + (newPrice * ammountOfCoin)
-      setAccountBalance(newAccountBalance)
-      newValues.balance  -= ammountOfCoin;
-    };
-        
-        return newValues;
-    });
 
-    
-    setCoinData(newCoinData)
-  }
 
   /*
 
@@ -192,7 +171,6 @@ function App () {
         showBalance={showBalance}
         handleRefresh ={handleRefresh}
         handleBuy ={handleBuy}
-        handleSell = {handleSell}
         buyInputValue = {buyInputValue}
         setbuyInputValue ={setbuyInputValue} /> 
        

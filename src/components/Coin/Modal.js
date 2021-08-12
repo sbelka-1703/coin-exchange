@@ -12,6 +12,9 @@ export default (props) => {
 
 Modal.setAppElement()
 
+useEffect((props) => {
+  props.setIsOpen(props.IsOpen)
+}, [props.IsOpen])
 
 const customStyles = {
     content : {

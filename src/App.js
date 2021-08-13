@@ -62,6 +62,7 @@ function App () {
   const [showBalance, setShowBalance] = useState(true)
   const [coinData, setCoinData] = useState([])
   const [buyInputValue, setbuyInputValue] = useState('')
+  const[insufficientBalanceMessage, setInsufficientBalanceMessage] = useState(false)
 
 
  
@@ -105,8 +106,17 @@ function App () {
     if (valueChangeId === values.key){
       let ammountOfCoin = parseFloat(ammountVallue)
       let newAccountBalance = accountBalance - (newPrice * ammountOfCoin)
+
+      if (newAccountBalance > 0 ){
       setAccountBalance(newAccountBalance)
-      newValues.balance  += ammountOfCoin;
+        newValues.balance  += ammountOfCoin;
+        setInsufficientBalanceMessage(false)
+      }
+      else{
+        setInsufficientBalanceMessage(true)
+        console.log('poor pidor')
+      }
+
     };
         
         return newValues;
@@ -129,6 +139,7 @@ function App () {
       let newAccountBalance = accountBalance + (newPrice * ammountOfCoin)
       setAccountBalance(newAccountBalance)
       newValues.balance  -= ammountOfCoin;
+
     };
         
         return newValues;
@@ -194,7 +205,9 @@ function App () {
         handleBuy ={handleBuy}
         handleSell = {handleSell}
         buyInputValue = {buyInputValue}
-        setbuyInputValue ={setbuyInputValue} /> 
+        setbuyInputValue ={setbuyInputValue}
+        insufficientBalanceMessage ={insufficientBalanceMessage}
+        setInsufficientBalanceMessage = {setInsufficientBalanceMessage} /> 
        
          
     </Div>

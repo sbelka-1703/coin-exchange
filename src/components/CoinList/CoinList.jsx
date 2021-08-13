@@ -48,7 +48,10 @@ width: 1000px ;
                 showBalance = {props.showBalance}
                 balance = {balance} 
                 price={price}
-                tickerId = {key} />)
+                tickerId = {key}
+                insufficientBalanceMessage ={props.insufficientBalanceMessage}
+                setInsufficientBalanceMessage = {props.setInsufficientBalanceMessage}
+                 />)
               }
     
 

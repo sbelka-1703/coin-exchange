@@ -23,11 +23,17 @@ color: white;
 
 `
 
+const Error = styled.div`
+display: flex;
+color: red;
+`
+
 
 
 const Coin = (props) =>  {
 
 const[modalIsOpen,setModalIsOpen] = useState(false)
+
 
     const customStyles = {
         content : {
@@ -64,6 +70,14 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
         
     } 
 
+    const handleSellClick = (event) => {
+        
+        event.preventDefault();
+        
+        
+        
+        props.handleSell(props.tickerId, props.buyInputValue);}
+
 
     
         return (
@@ -87,24 +101,22 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
            isOpen = {modalIsOpen} 
            style = {customStyles} 
            ariaHideApp={false}
-           onRequestClose = {() => setModalIsOpen(false)}>
+           onRequestClose = {() => setModalIsOpen(false) + props.setInsufficientBalanceMessage(false)}>
            <H1> Trade {props.tickerId.toUpperCase()} </H1> 
+           
            <Label htmlFor = "buyInput"> Amount of Coins to Buy/Sell </Label>
+           {props.insufficientBalanceMessage && <Error>Insufficient Balance</Error>}
            
            <input id = "buyInput" 
            type ="number" 
            required
-           onChange={event => props.setbuyInputValue(event.target.value)}
-           
-           
-           
-           >
+           onChange={event => props.setbuyInputValue(event.target.value)}>
         
             </input>
 
 
            <button onClick = {handleBuyClick} >Buy</button>
-
+           <button onClick = {handleSellClick} >Sell</button>
           </Modal>
 
           </>

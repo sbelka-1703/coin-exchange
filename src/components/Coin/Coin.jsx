@@ -1,13 +1,27 @@
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
-import Modal from './Modal';
+import Modal from 'react-modal';
 import React, { useState } from 'react';
 
 
 const Td = styled.td`
     border: 1px solid #cccc;
     width: 25vh; `
+
+
+const H1 = styled.h1`
+
+display: flex;
+color: white;
+
+`
+
+const Label = styled.label`
+display: flex;
+color: white;
+
+`
 
 
 
@@ -23,7 +37,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
           bottom                : 'auto',
           marginRight           : '-50%',
           transform             : 'translate(-50%, -50%)',
-          backgroundColor       : '#F0AA89'      
+          backgroundColor       : 'rgb(38, 45, 52)'  
         }
     };
      
@@ -43,16 +57,15 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
     const handleBuyClick = (event) => {
         
         event.preventDefault();
+        
+        
+        
         props.handleBuy(props.tickerId, props.buyInputValue);
         
     } 
 
 
-    const clicked = () => { 
     
-        console.log('test')
-    }
-
         return (
             <>
             <tr >
@@ -62,8 +75,7 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
                 {props.showBalance ? <Td> {props.balance}</Td> : null}
 
             <Td>
-                <button onClick = {() => setModalIsOpen(true)}>Buy</button>
-                <button onClick = {clicked}>Sell</button>
+                <button onClick = {() => setModalIsOpen(true)}>Trade</button>
                 <form action="#" method="POST">
                 <button onClick = {handleClick}>Refresh</button>
                 </form>
@@ -72,13 +84,13 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
 
           <Modal 
           
-          
-            
+           isOpen = {modalIsOpen} 
+           style = {customStyles} 
            ariaHideApp={false}
            onRequestClose = {() => setModalIsOpen(false)}>
-           <h1>Buy</h1>
-           <h1>{props.tickerId}</h1>
-           <label for = "buyInput"> Amount of Coins to Buy </label>
+           <H1> Trade {props.tickerId.toUpperCase()} </H1> 
+           <Label htmlFor = "buyInput"> Amount of Coins to Buy/Sell </Label>
+           
            <input id = "buyInput" 
            type ="number" 
            required

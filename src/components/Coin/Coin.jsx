@@ -26,6 +26,7 @@ color: white;
 const Error = styled.div`
 display: flex;
 color: red;
+font-size: 0.82rem;
 `
 
 
@@ -101,12 +102,12 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
            isOpen = {modalIsOpen} 
            style = {customStyles} 
            ariaHideApp={false}
-           onRequestClose = {() => setModalIsOpen(false) + props.setInsufficientBalanceMessage(false)}>
+           onRequestClose = {() => setModalIsOpen(false) + props.setInsufficientUsdBalanceMessage(false) + props.setInsufficientCoinBalanceMessage(false) }>
            <H1> Trade {props.tickerId.toUpperCase()} </H1> 
            
            <Label htmlFor = "buyInput"> Amount of Coins to Buy/Sell </Label>
-           {props.insufficientBalanceMessage && <Error>Insufficient Balance</Error>}
-           
+           {props.insufficientUsdBalanceMessage && <Error>Insufficient Balance (USD)</Error>}
+           {props.insufficientCoinBalanceMessage && <Error>Insufficient Balance of Coins to sell</Error> }
            <input id = "buyInput" 
            type ="number" 
            required

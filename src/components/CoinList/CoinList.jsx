@@ -49,8 +49,10 @@ width: 1000px ;
                 balance = {balance} 
                 price={price}
                 tickerId = {key}
-                insufficientBalanceMessage ={props.insufficientBalanceMessage}
-                setInsufficientBalanceMessage = {props.setInsufficientBalanceMessage}
+                insufficientUsdBalanceMessage ={props.insufficientUsdBalanceMessage}
+                setInsufficientUsdBalanceMessage = {props.setInsufficientUsdBalanceMessage}
+                insufficientCoinBalanceMessage = {props.insufficientCoinBalanceMessage}
+                setInsufficientCoinBalanceMessage = {props.setInsufficientCoinBalanceMessage}
                  />)
               }
     

@@ -62,7 +62,8 @@ function App () {
   const [showBalance, setShowBalance] = useState(true)
   const [coinData, setCoinData] = useState([])
   const [buyInputValue, setbuyInputValue] = useState('')
-  const[insufficientBalanceMessage, setInsufficientBalanceMessage] = useState(false)
+  const[insufficientUsdBalanceMessage, setInsufficientUsdBalanceMessage] = useState(false)
+  const[insufficientCoinBalanceMessage, setInsufficientCoinBalanceMessage] = useState(false)
 
 
  
@@ -108,13 +109,12 @@ function App () {
       let newAccountBalance = accountBalance - (newPrice * ammountOfCoin)
 
       if (newAccountBalance > 0 ){
-      setAccountBalance(newAccountBalance)
+        setAccountBalance(newAccountBalance)
         newValues.balance  += ammountOfCoin;
-        setInsufficientBalanceMessage(false)
+        setInsufficientUsdBalanceMessage(false)
       }
       else{
-        setInsufficientBalanceMessage(true)
-        console.log('poor pidor')
+        setInsufficientUsdBalanceMessage(true)
       }
 
     };
@@ -137,9 +137,14 @@ function App () {
     if (valueChangeId === values.key){
       let ammountOfCoin = parseFloat(ammountVallue)
       let newAccountBalance = accountBalance + (newPrice * ammountOfCoin)
+      if (ammountOfCoin <= newValues.balance ){
       setAccountBalance(newAccountBalance)
-      newValues.balance  -= ammountOfCoin;
-
+        newValues.balance  -= ammountOfCoin;
+        setInsufficientCoinBalanceMessage(false)
+      }
+      else{
+        setInsufficientCoinBalanceMessage(true)
+      }
     };
         
         return newValues;
@@ -206,8 +211,11 @@ function App () {
         handleSell = {handleSell}
         buyInputValue = {buyInputValue}
         setbuyInputValue ={setbuyInputValue}
-        insufficientBalanceMessage ={insufficientBalanceMessage}
-        setInsufficientBalanceMessage = {setInsufficientBalanceMessage} /> 
+        insufficientUsdBalanceMessage ={insufficientUsdBalanceMessage}
+        setInsufficientUsdBalanceMessage = {setInsufficientUsdBalanceMessage}
+        insufficientCoinBalanceMessage = {insufficientCoinBalanceMessage}
+        setInsufficientCoinBalanceMessage = {setInsufficientCoinBalanceMessage}
+        /> 
        
          
     </Div>

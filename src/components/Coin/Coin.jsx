@@ -29,6 +29,47 @@ color: red;
 font-size: 0.82rem;
 `
 
+const Button = styled.button`
+background-color: #040404;
+color: #E3E2DF;
+border: none;
+cursor:pointer;
+border-radius: 4px
+text-align: center;
+margin: 5px;
+`
+
+const BuyButton = styled.button`
+background-color: #4CAF50;
+color: white;
+border: none;
+cursor:pointer;
+border-radius: 4px
+text-align: center;
+margin: 3px;
+`
+
+const SellButton = styled.button`
+
+background-color: #f44336;
+color: white;
+border: none;
+text-align: center;
+margin: 3px;
+cursor:pointer;
+`
+
+const CancelButton = styled.button`
+border: none;
+margin-left: 5px;
+border: none;
+cursor:pointer;
+`
+const TradeInput = styled.input`
+width: 34%;
+
+`
+
 
 
 const Coin = (props) =>  {
@@ -47,6 +88,14 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
           backgroundColor       : 'rgb(38, 45, 52)'  
         }
     };
+
+    const close = () => {
+      
+        setModalIsOpen(false) 
+        props.setInsufficientUsdBalanceMessage(false) 
+        props.setInsufficientCoinBalanceMessage(false)
+
+    }
      
 
     
@@ -90,9 +139,9 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
                 {props.showBalance ? <Td> {props.balance}</Td> : null}
 
             <Td>
-                <button onClick = {() => setModalIsOpen(true)}>Trade</button>
+                <Button onClick = {() => setModalIsOpen(true)}>Trade</Button>
                 <form action="#" method="POST">
-                <button onClick = {handleClick}>Refresh</button>
+                <Button onClick = {handleClick}>Refresh</Button>
                 </form>
             </Td>
           </tr>
@@ -102,22 +151,23 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
            isOpen = {modalIsOpen} 
            style = {customStyles} 
            ariaHideApp={false}
-           onRequestClose = {() => setModalIsOpen(false) + props.setInsufficientUsdBalanceMessage(false) + props.setInsufficientCoinBalanceMessage(false) }>
+           onRequestClose = {close}>
            <H1> Trade {props.tickerId.toUpperCase()} </H1> 
            
            <Label htmlFor = "buyInput"> Amount of Coins to Buy/Sell </Label>
            {props.insufficientUsdBalanceMessage && <Error>Insufficient Balance (USD)</Error>}
            {props.insufficientCoinBalanceMessage && <Error>Insufficient Balance of Coins to sell</Error> }
-           <input id = "buyInput" 
+           <TradeInput id = "buyInput" 
            type ="number" 
            required
            onChange={event => props.setbuyInputValue(event.target.value)}>
         
-            </input>
+            </TradeInput>
 
 
-           <button onClick = {handleBuyClick} >Buy</button>
-           <button onClick = {handleSellClick} >Sell</button>
+           <BuyButton onClick = {handleBuyClick} >Buy</BuyButton>
+           <SellButton onClick = {handleSellClick} >Sell</SellButton>
+           <CancelButton onClick = {close}>Cancel</CancelButton>
           </Modal>
 
           </>

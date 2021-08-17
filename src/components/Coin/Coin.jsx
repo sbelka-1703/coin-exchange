@@ -6,8 +6,11 @@ import React, { useState } from 'react';
 
 
 const Td = styled.td`
-    border: 1px solid #cccc;
-    width: 25vh; `
+border: 1px solid;
+width: 27vh;
+text-align: center;
+margin: 50px auto 50px auto;
+font-size: 1.4rem;`
 
 
 const H1 = styled.h1`
@@ -30,13 +33,13 @@ font-size: 0.82rem;
 `
 
 const Button = styled.button`
-background-color: #040404;
-color: #E3E2DF;
-border: none;
-cursor:pointer;
-border-radius: 4px
-text-align: center;
-margin: 5px;
+font-size: 12 px; 
+    width: 64px;
+    line-height: 12 px; 
+    padding: 4px; 
+    border-radius: 5px; 
+    margin: 3px 5px 0;
+    border: 2px solid rgb(28, 110, 164); 
 `
 
 const BuyButton = styled.button`
@@ -139,8 +142,9 @@ const[modalIsOpen,setModalIsOpen] = useState(false)
                 {props.showBalance ? <Td> {props.balance}</Td> : null}
 
             <Td>
+                
+                <form action="#" >
                 <Button onClick = {() => setModalIsOpen(true)}>Trade</Button>
-                <form action="#" method="POST">
                 <Button onClick = {handleClick}>Refresh</Button>
                 </form>
             </Td>

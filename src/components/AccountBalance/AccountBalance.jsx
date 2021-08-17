@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 const Section = styled.section`
       
-      font-size: 2rem;
-      text-align: left;
-      padding: 1.5rem 0 1.5rem 5rem;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1.5rem 0 1.5rem 5rem;
     `;
 
 const HelicopterButton = styled.button`
@@ -29,6 +29,8 @@ const ShowBalanceButton = styled.button`
 
 `
 
+
+
  
 
 
@@ -40,11 +42,15 @@ const ShowBalanceButton = styled.button`
               content =
               
               <>
+
+              <div>
+              Balance: ${props.amount}
               <HelicopterButton onClick = {props.brrr}> 
                   <img src="https://repository-images.githubusercontent.com/248313335/ce39a680-697b-11ea-90da-a31bb68a0024" width="50" alt = 'Print more money' />  
               </HelicopterButton>
-              Balance: ${props.amount}
+              </div>  
               
+                        
               </>
         }
         return (

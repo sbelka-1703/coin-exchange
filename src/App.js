@@ -154,32 +154,6 @@ function App () {
     setCoinData(newCoinData)
   }
 
-  /*
-
-  x-Build the buy function, so it works with a hard coded price of a token 
- 
-   *****
-
-  x 1. Chose the amount of the token you want to buy 
-      -Need to get the value of the input and put that into handleBuy 
-   
-   *****
-  
- x 2. Get the actual price of the specific token from coinparika (**later**)
-
- x 3. Balance - (price * amount)
-    -If insufficent balance, throw an error 
-  
- x 4. Add it to the balance of the token 
-
-  5. Try to put it in a separate component 
-
-
-  =======
-
- x We also need the modal to display which token was selected, work on this first 
-  
-  */
   
 
 
@@ -217,7 +191,7 @@ function App () {
         setInsufficientCoinBalanceMessage = {setInsufficientCoinBalanceMessage}
         /> 
        
-         
+       <div>By Sbelka-1703</div>
     </Div>
   );
  
